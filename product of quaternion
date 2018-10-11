@@ -6,6 +6,8 @@
 ;; data example
 (make-quaternion 1 2 3 4)
 
+;; quat-mult: quaternion quaternion -> quaternion
+
 (define (quat-mult a b q1 q2)
   (make-quaternion
    (+ (*(quaternion-cc q1) (quaternion-cc q2))
