@@ -34,6 +34,10 @@
 ;(soln-quad (make-quad 1 0 4)) yields
 ;(make-soln 0+2i 0-2i)
 
+;(soln-quad (make-quad 2+i 1.2+2i 3)) yields
+;(make-soln -0.821529966574932-1.3892182451594766i 
+;           -0.05847003342506794+0.8292182451594765i)
+
 ;; ==================================================
 
 ;; computes the vertex of a quadratic function
