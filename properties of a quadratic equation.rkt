@@ -43,9 +43,10 @@
 ;; a>0, there is a minimum y; a<0, there is a maximum y
 
 (define (vertex myquad)
-  (make-posn (- (/ (quad-b myquad) (* 2 (quad-a myquad))))
-             (/ (- (* 4 (quad-a myquad) (quad-c myquad)) (sqr (quad-b myquad)))
-                (* 4 (quad-a myquad)))))
+  (make-posn 
+   (- (/ (quad-b myquad) (* 2 (quad-a myquad))))
+   (/ (- (* 4 (quad-a myquad) (quad-c myquad)) (sqr (quad-b myquad))) 
+      (* 4 (quad-a myquad)))))
                 
  ;; example
 (vertex (make-quad 6 3.3 4)) yields
