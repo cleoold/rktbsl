@@ -49,5 +49,5 @@
       (* 4 (quad-a myquad)))))
                 
  ;; example
-(vertex (make-quad 6 3.3 4)) yields
-(make-posn -0.275 3.54625)
+;(vertex (make-quad 6 3.3 4)) yields
+;(make-posn -0.275 3.54625)
