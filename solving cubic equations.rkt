@@ -23,9 +23,6 @@
    (- (t 0 mycubic) (/ (cubic-b mycubic) (* 3 (cubic-a mycubic))))
    (- (t 1 mycubic) (/ (cubic-b mycubic) (* 3 (cubic-a mycubic))))
    (- (t 2 mycubic) (/ (cubic-b mycubic) (* 3 (cubic-a mycubic))))))
-   
-(define-struct cubic (a b c d))
-(define-struct soln (x1 x2 x3))
 
 (define (p mycubic)
   (/ (- (* 3 (cubic-a mycubic) (cubic-c mycubic)) (sqr (cubic-b mycubic)))
