@@ -48,6 +48,6 @@
    (/ (- (* 4 (quad-a myquad) (quad-c myquad)) (sqr (quad-b myquad))) 
       (* 4 (quad-a myquad)))))
                 
- ;; example
+;; example
 ;(vertex (make-quad 6 3.3 4)) yields
 ;(make-posn -0.275 3.54625)
