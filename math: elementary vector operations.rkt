@@ -44,6 +44,18 @@
          (vec-dot (rest vec1) (rest vec2)))]))
          
 ;; example
-
 ; (vec-dot (list 1 2 3 4) (list 2 3 4 5)) yields
 ; 40
+
+;; cross product
+;; vec-cross: Vec Vec -> Vec
+;; vec1, vec2 length = 3
+
+(define (vec-cross vec1 vec2)
+  (list (- (* (second vec1) (third vec2)) (* (third vec1) (second vec2)))
+        (- (* (third vec1) (first vec2)) (* (first vec1) (third vec2)))
+        (- (* (first vec1) (second vec2)) (* (second vec1) (first vec2)))))
+        
+;; example
+; (vec-cross (list 1 2.3 -0.2) (list 2.2 3 1.5)) yields
+; (list 4.05 -1.94 -2.06)
