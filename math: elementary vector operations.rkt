@@ -132,6 +132,25 @@
 ; (list -1.0 6.123031769111886e-017)
 
 ;; ..........................................................
+;; rotate 3d vector v counterclockwise with angle a with respect with x, y, or z axis
+;; vector shall have length 3
+;; rx, ry, rz: Vec Num -> Vec
 
+(define (rx v a)
+  (list
+   (first v)
+   (- (* (second v) (cos a)) (* (third v) (sin a)))
+   (+ (* (second v) (sin a)) (* (third v) (cos a)))))
 
+(define (ry v a)
+  (list
+   (+ (* (first v) (cos a)) (* (third v) (sin a)))
+   (second v)
+   (- (* (third v) (cos a)) (* (first v) (sin a)))))
+
+(define (rz v a)
+  (list
+   (- (* (first v) (cos a)) (* (second v) (sin a)))
+   (+ (* (first v) (sin a)) (* (second v) (cos a)))
+   (third v)))
 
