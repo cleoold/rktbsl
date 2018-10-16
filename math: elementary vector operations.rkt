@@ -116,3 +116,22 @@
 ;; example
 ; (refl (list 1 -2 3) (list 1 0 0)) yields
 ; (list 6/7 2/7 -3/7)
+
+;; ..........................................................
+;; rotates 2d vector v counterclockwise with angle a
+;; vector v shall have length 2
+;; r2: Vec Num -> Vec
+
+(define (r2 v a)
+  (list
+   (- (* (cos a) (first v)) (* (sin a) (second v)))
+   (+ (* (sin a) (first v)) (* (cos a) (second v)))))
+
+;; example
+; (r2 (list 1 0) (/ pi 2)) yields
+; (list -1.0 6.123031769111886e-017)
+
+;; ..........................................................
+
+
+
