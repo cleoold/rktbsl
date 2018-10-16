@@ -107,3 +107,12 @@
 ; (list 1.1- 1.94- 2.83- 4.1-)
 
 ;; ..........................................................
+;; reflection of vector x onto hyperplane with normal n
+;; refl: Vec Vec -> Vec
+
+(define (refl n x)
+  (vec-add x (vec-mult -2 (vec-mult (/ (vec-dot x n) (vec-sqr n)) n))))
+  
+;; example
+; (refl (list 1 -2 3) (list 1 0 0)) yields
+; (list 6/7 2/7 -3/7)
