@@ -6,6 +6,7 @@
 ;; * (cons Num empty)
 ;; * (cons Num (cons Num empty))
 
+;; ..........................................................
 ;; modulo of a vector
 ;; vec-sqr: Vec -> Num ; this determines the square of vector u
 ;; vec-mag: Vec -> Num
@@ -21,6 +22,7 @@
 ; (vec-mag (list -2 1 3)) yields
 ; 3.7416573867739413
 
+;; ..........................................................
 ;; vector addition
 ;; vec-add: Vec Vec -> Vec
 
@@ -34,7 +36,7 @@
 ; (vec-add (list 1 2 3 4 8) (list -1 2 4 4 0)) yields
 ; (list 0 4 7 8 8)
 
-
+;; ..........................................................
 ;; scalar multiplication
 ;; vec-mult: Num Vec -> Vec
 
@@ -48,7 +50,7 @@
 ; (vec-mult -2 (list 2 -3 4 5)) yields
 ; (list -4 6 -8 -10)
 
-
+;; ..........................................................
 ;; inner product
 ;; vec-dot: Vec Vec -> Num
 
@@ -62,6 +64,7 @@
 ; (vec-dot (list 1 2 3 4) (list 2 3 4 5)) yields
 ; 40
 
+;; ..........................................................
 ;; cross product
 ;; vec-cross: Vec Vec -> Vec
 ;; u, v length = 3
@@ -91,6 +94,7 @@
 ; (proj (list 4 0 3) (list 1 -5 3)) yields
 ; (list 2.08 0 1.56)
 
+;; ..........................................................
 ;; perpendicular of vector x onto vector u
 ;; (also projection of vector x onto plane with normal n)
 ;; perp: Vec Vec -> Vec
@@ -102,4 +106,4 @@
 ; (perp (list 2 -1 3 2) (list 1 2 -3 4)) yields
 ; (list 1.1- 1.94- 2.83- 4.1-)
 
-
+;; ..........................................................
