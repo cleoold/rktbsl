@@ -6,14 +6,28 @@
 ;; * (cons Num empty)
 ;; * (cons Num (cons Num empty))
 
+;; modulo of a vector
+;; vec-mag: Vec -> Num
+
+(define (vec-sqr u)
+  (cond [(empty? u) 0]
+        [else
+         (+ (sqr (first u)) (vec-sqr (rest u)))]))
+(define (vec-mag u)
+  (sqrt (vec-sqr u)))
+ 
+;; example
+; (vec-mag (list -2 1 3)) yields
+; 3.7416573867739413
+
 ;; vector addition
 ;; vec-add: Vec Vec -> Vec
 
-(define (vec-add vec1 vec2)
-  (cond [(empty? vec1) empty]
+(define (vec-add u v)
+  (cond [(empty? u) empty]
         [else
-         (cons (+ (first vec1) (first vec2))
-               (vec-add (rest vec1) (rest vec2)))]))
+         (cons (+ (first u) (first v))
+               (vec-add (rest u) (rest v)))]))
 
 ;; example
 ; (vec-add (list 1 2 3 4 8) (list -1 2 4 4 0)) yields
@@ -23,11 +37,11 @@
 ;; scalar multiplication
 ;; vec-mult: Num Vec -> Vec
 
-(define (vec-mult c vec1)
-  (cond [(empty? vec1) empty]
+(define (vec-mult c u)
+  (cond [(empty? u) empty]
         [else
-         (cons (* c (first vec1))
-               (vec-mult c (rest vec1)))]))
+         (cons (* c (first u))
+               (vec-mult c (rest u)))]))
                
 ;; example
 ; (vec-mult -2 (list 2 -3 4 5)) yields
@@ -37,11 +51,11 @@
 ;; inner product
 ;; vec-dot: Vec Vec -> Num
 
-(define (vec-dot vec1 vec2)
-  (cond [(empty? vec1) 0]
+(define (vec-dot u v)
+  (cond [(empty? u) 0]
         [else
-         (+ (* (first vec1) (first vec2))
-         (vec-dot (rest vec1) (rest vec2)))]))
+         (+ (* (first u) (first v))
+         (vec-dot (rest u) (rest v)))]))
          
 ;; example
 ; (vec-dot (list 1 2 3 4) (list 2 3 4 5)) yields
@@ -49,12 +63,12 @@
 
 ;; cross product
 ;; vec-cross: Vec Vec -> Vec
-;; vec1, vec2 length = 3
+;; u, v length = 3
 
-(define (vec-cross vec1 vec2)
-  (list (- (* (second vec1) (third vec2)) (* (third vec1) (second vec2)))
-        (- (* (third vec1) (first vec2)) (* (first vec1) (third vec2)))
-        (- (* (first vec1) (second vec2)) (* (second vec1) (first vec2)))))
+(define (vec-cross u v)
+  (list (- (* (second u) (third v)) (* (third u) (second v)))
+        (- (* (third u) (first v)) (* (first u) (third v)))
+        (- (* (first u) (second v)) (* (second u) (first v)))))
         
 ;; example
 ; (vec-cross (list 1 2.3 -0.2) (list 2.2 3 1.5)) yields
