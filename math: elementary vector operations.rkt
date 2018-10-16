@@ -7,6 +7,7 @@
 ;; * (cons Num (cons Num empty))
 
 ;; modulo of a vector
+;; vec-sqr: Vec -> Num ; this determines the square of vector u
 ;; vec-mag: Vec -> Num
 
 (define (vec-sqr u)
@@ -73,3 +74,32 @@
 ;; example
 ; (vec-cross (list 1 2.3 -0.2) (list 2.2 3 1.5)) yields
 ; (list 4.05 -1.94 -2.06)
+
+;; ==========================================================
+;; below contents need above functions ready as helpers
+;; two vectors shall be same length
+
+;; projection of vector x onto vector u
+;; (also perpendicular of vector x onto plane with normal n)
+;; proj: Vec Vec -> Vec
+
+(define (proj u x)
+  (vec-mult
+   (/ (vec-dot x u) (vec-sqr u)) u))
+   
+;; example
+; (proj (list 4 0 3) (list 1 -5 3)) yields
+; (list 2.08 0 1.56)
+
+;; perpendicular of vector x onto vector u
+;; (also projection of vector x onto plane with normal n)
+;; perp: Vec Vec -> Vec
+
+(define (perp u x)
+  (vec-add x (vec-mult -1 (vec-mult (/ (vec-dot x u) (vec-sqr u)) u))))
+  
+;; example
+; (perp (list 2 -1 3 2) (list 1 2 -3 4)) yields
+; (list 1.1- 1.94- 2.83- 4.1-)
+
+
