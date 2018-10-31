@@ -2,9 +2,9 @@
 ;; requires two vectors are same length, which means both in R^n
 
 ;; defining a vector
-;; a vec is either
+;; a Vec is either
 ;; * (cons Num empty)
-;; * (cons Num (cons Num empty))
+;; * (cons Num Vec)
 
 ;; ..........................................................
 ;; modulo of a vector
