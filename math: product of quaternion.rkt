@@ -27,8 +27,8 @@
       (*(quaternion-jc q1) (quaternion-ic q2) -1)
       (*(quaternion-kc q1) (quaternion-cc q2)))))
       
-example
-(6+0i-2j-1k)*(1+0i+4j+2k) = 114+0i+22j+11k (a=10, b=9)
+; example
+; (6+0i-2j-1k)*(1+0i+4j+2k) = 114+0i+22j+11k (a=10, b=9)
 
 (quat-mult 10 9 (make-quaternion 6 0 -2 -1) (make-quaternion 1 0 4 2))
 "shall be"
