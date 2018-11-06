@@ -15,8 +15,8 @@
         [else 
          (+ (first mypoly) (* x (eval-poly (rest mypoly) x)))]))
          
-example
-1+2x+3x^2-4x^3-5x^4 = -479 (x=3)
+; example
+; 1+2x+3x^2-4x^3-5x^4 = -479 (x=3)
 (eval-poly (list 1 2 3 -4 -5) 3)
 "shall be"
 -479
