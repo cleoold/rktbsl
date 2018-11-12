@@ -46,3 +46,32 @@
    '((1 2 3 4) (-2 -3 -4 -5)))
 yields
 '((2 4 6 8) (-4 -6 -8 -10))
+
+;; ..........................................................
+;; transpose
+;; transpose: Mtx -> Mtx
+
+(define (transpose m)
+  (local
+    [(define (column colth m2)
+       (local
+         [(define (get-ele row jth)
+            (cond [(zero? jth) (first row)]
+                  [else
+                   (get-ele (rest row) (sub1 jth))]))]
+         (cond
+           [(empty? m2) empty]
+           [else
+            (cons (get-ele (first m2) colth)
+                  (column colth (rest m2)))])))
+     (define (trp/raw from)
+       (cond [(= from (length (first m))) empty]
+             [else (cons (column from m)
+                         (trp/raw (add1 from)))]))]
+    (trp/raw 0)))
+    
+    ;; example
+    ; (transpose 
+       '((1 2 3 4) (5 6 7 8)))
+    ; yields
+    '((1 5) (2 6) (3 7) (4 8))
