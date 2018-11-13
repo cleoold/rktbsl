@@ -4,7 +4,7 @@
 
 ;; defining a vector
 ;; a Vec is either
-;; * (cons Num empty)
+;; * (cons Num null)
 ;; * (cons Num Vec)
 
 ;; ..........................................................
@@ -13,7 +13,7 @@
 ;; vec-mag: Vec -> Num
 
 (define (vec-sqr u)
-  (cond [(empty? u) 0]
+  (cond [(null? u) 0]
         [else
          (+ (sqr (car u)) (vec-sqr (cdr u)))]))
 (define (vec-mag u)
@@ -28,7 +28,7 @@
 ;; vec-add: Vec Vec -> Vec
 
 (define (vec-add u v)
-  (cond [(empty? u) empty]
+  (cond [(null? u) null]
         [else
          (cons (+ (car u) (car v))
                (vec-add (cdr u) (cdr v)))]))
@@ -42,7 +42,7 @@
 ;; vec-mult: Num Vec -> Vec
 
 (define (vec-mult c u)
-  (cond [(empty? u) empty]
+  (cond [(null? u) null]
         [else
          (cons (* c (car u))
                (vec-mult c (cdr u)))]))
@@ -56,7 +56,7 @@
 ;; vec-dot: Vec Vec -> Num
 
 (define (vec-dot u v)
-  (cond [(empty? u) 0]
+  (cond [(null? u) 0]
         [else
          (+ (* (car u) (car v))
          (vec-dot (cdr u) (cdr v)))]))
