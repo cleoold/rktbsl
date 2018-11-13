@@ -1,10 +1,11 @@
+;#lang racket
 ;; some operations on matrices
 ;; a matrix is really a series of rows/columns of vectors so
 ;; refer to "rktbsl/math: vectors.rkt" for required functions
 
 ;; defining a matrix
 ;; a matrix (Mtx) is a list
-;; (cons (list of Num) empty)
+;; (cons (list of Num) null)
 ;; (cons (list of Num) Mtx)
 
 ;; ..........................................................
@@ -16,10 +17,10 @@
 ; requires (vec-add u v)
 
 (define (mtx-add a b)
-  (cond [(empty? a) empty]
+  (cond [(null? a) null]
         [else 
-         (cons (vec-add (first a) (first b))
-               (mtx-add (rest a) (rest b)))]))
+         (cons (vec-add (car a) (car b))
+               (mtx-add (cdr a) (cdr b)))]))
                     
 ;; example
 ; (add-mtx
@@ -36,16 +37,16 @@
 ; requires (vec-mult c u)
 
 (define (mtx-sc-mult c a)
-  (cond [(empty? a) empty]
+  (cond [(null? a) null]
         [else 
-         (cons (vec-mult c (first a))
-               (mtx-sc-mult c (rest a)))]))
+         (cons (vec-mult c (car a))
+               (mtx-sc-mult c (cdr a)))]))
                
 ;; example
-(mtx-sc-mult 2
-   '((1 2 3 4) (-2 -3 -4 -5)))
-yields
-'((2 4 6 8) (-4 -6 -8 -10))
+; (mtx-sc-mult 2
+; '((1 2 3 4) (-2 -3 -4 -5)))
+; yields
+; '((2 4 6 8) (-4 -6 -8 -10))
 
 ;; ..........................................................
 ;; transpose
@@ -56,22 +57,22 @@ yields
     [(define (column colth m2)
        (local
          [(define (get-ele row jth)
-            (cond [(zero? jth) (first row)]
+            (cond [(zero? jth) (car row)]
                   [else
-                   (get-ele (rest row) (sub1 jth))]))]
+                   (get-ele (cdr row) (sub1 jth))]))]
          (cond
-           [(empty? m2) empty]
+           [(null? m2) null]
            [else
-            (cons (get-ele (first m2) colth)
-                  (column colth (rest m2)))])))
+            (cons (get-ele (car m2) colth)
+                  (column colth (cdr m2)))])))
      (define (trp/raw from)
-       (cond [(= from (length (first m))) empty]
+       (cond [(= from (length (car m))) null]
              [else (cons (column from m)
                          (trp/raw (add1 from)))]))]
     (trp/raw 0)))
     
-    ;; example
-    ; (transpose 
-       '((1 2 3 4) (5 6 7 8)))
-    ; yields
-    '((1 5) (2 6) (3 7) (4 8))
+;; example
+; (transpose 
+; '((1 2 3 4) (5 6 7 8)))
+; yields
+; '((1 5) (2 6) (3 7) (4 8))
