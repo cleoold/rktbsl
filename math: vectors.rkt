@@ -1,3 +1,4 @@
+;#lang racket
 ;; calculates some basic operations associated with vectors
 ;; requires two vectors are same length, which means both in R^n
 
@@ -14,7 +15,7 @@
 (define (vec-sqr u)
   (cond [(empty? u) 0]
         [else
-         (+ (sqr (first u)) (vec-sqr (rest u)))]))
+         (+ (sqr (car u)) (vec-sqr (cdr u)))]))
 (define (vec-mag u)
   (sqrt (vec-sqr u)))
  
@@ -29,8 +30,8 @@
 (define (vec-add u v)
   (cond [(empty? u) empty]
         [else
-         (cons (+ (first u) (first v))
-               (vec-add (rest u) (rest v)))]))
+         (cons (+ (car u) (car v))
+               (vec-add (cdr u) (cdr v)))]))
 
 ;; example
 ; (vec-add (list 1 2 3 4 8) (list -1 2 4 4 0)) yields
@@ -43,8 +44,8 @@
 (define (vec-mult c u)
   (cond [(empty? u) empty]
         [else
-         (cons (* c (first u))
-               (vec-mult c (rest u)))]))
+         (cons (* c (car u))
+               (vec-mult c (cdr u)))]))
                
 ;; example
 ; (vec-mult -2 (list 2 -3 4 5)) yields
@@ -57,8 +58,8 @@
 (define (vec-dot u v)
   (cond [(empty? u) 0]
         [else
-         (+ (* (first u) (first v))
-         (vec-dot (rest u) (rest v)))]))
+         (+ (* (car u) (car v))
+         (vec-dot (cdr u) (cdr v)))]))
          
 ;; example
 ; (vec-dot (list 1 2 3 4) (list 2 3 4 5)) yields
@@ -70,9 +71,9 @@
 ;; u, v length = 3
 
 (define (vec-cross u v)
-  (list (- (* (second u) (third v)) (* (third u) (second v)))
-        (- (* (third u) (first v)) (* (first u) (third v)))
-        (- (* (first u) (second v)) (* (second u) (first v)))))
+  (list (- (* (cadr u) (caddr v)) (* (caddr u) (cadr v)))
+        (- (* (caddr u) (car v)) (* (car u) (caddr v)))
+        (- (* (car u) (cadr v)) (* (cadr u) (car v)))))
         
 ;; example
 ; (vec-cross (list 1 2.3 -0.2) (list 2.2 3 1.5)) yields
@@ -124,8 +125,8 @@
 
 (define (r2 v a)
   (list
-   (- (* (cos a) (first v)) (* (sin a) (second v)))
-   (+ (* (sin a) (first v)) (* (cos a) (second v)))))
+   (- (* (cos a) (car v)) (* (sin a) (cadr v)))
+   (+ (* (sin a) (car v)) (* (cos a) (cadr v)))))
 
 ;; example
 ; (r2 (list 1 0) (/ pi 2)) yields
@@ -138,19 +139,18 @@
 
 (define (rx v a)
   (list
-   (first v)
-   (- (* (second v) (cos a)) (* (third v) (sin a)))
-   (+ (* (second v) (sin a)) (* (third v) (cos a)))))
+   (car v)
+   (- (* (cadr v) (cos a)) (* (caddr v) (sin a)))
+   (+ (* (cadr v) (sin a)) (* (caddr v) (cos a)))))
 
 (define (ry v a)
   (list
-   (+ (* (first v) (cos a)) (* (third v) (sin a)))
-   (second v)
-   (- (* (third v) (cos a)) (* (first v) (sin a)))))
+   (+ (* (car v) (cos a)) (* (caddr v) (sin a)))
+   (cadr v)
+   (- (* (caddr v) (cos a)) (* (car v) (sin a)))))
 
 (define (rz v a)
   (list
-   (- (* (first v) (cos a)) (* (second v) (sin a)))
-   (+ (* (first v) (sin a)) (* (second v) (cos a)))
-   (third v)))
-
+   (- (* (car v) (cos a)) (* (cadr v) (sin a)))
+   (+ (* (car v) (sin a)) (* (cadr v) (cos a)))
+   (caddr v)))
