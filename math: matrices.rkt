@@ -54,21 +54,18 @@
 
 (define (transpose m)
   (local
-    [(define (column colth m2)
-       (local
-         [(define (get-ele row jth)
-            (cond [(zero? jth) (car row)]
-                  [else
-                   (get-ele (cdr row) (sub1 jth))]))]
-         (cond
-           [(null? m2) null]
-           [else
-            (cons (get-ele (car m2) colth)
-                  (column colth (cdr m2)))])))
+    [(define (get-ele row jth)
+       (if (zero? jth)
+           (car row)
+           (get-ele (cdr row) (sub1 jth))))
+     (define (column colth m2)
+       (if (null? m2)
+           null
+           (cons (get-ele (car m2) colth) (column colth (cdr m2)))))
      (define (trp/raw from)
-       (cond [(= from (length (car m))) null]
-             [else (cons (column from m)
-                         (trp/raw (add1 from)))]))]
+       (if (= from (length (car m)))
+           null
+           (cons (column from m) (trp/raw (add1 from)))))]
     (trp/raw 0)))
     
 ;; example
