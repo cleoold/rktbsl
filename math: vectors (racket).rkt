@@ -21,3 +21,17 @@
 (define (vec-mag u)
   (sqrt
    (foldr (lambda (x1 xn) (+ (sqr x1) xn)) 0 u)))
+   
+;; ..........................................................
+;; vector addition
+;; vec-add: Vec Vec -> Vec
+
+(define (vec-add u v)
+  (map + u v))
+
+;; ..........................................................
+;; scalar multiplication
+;; vec-mult: Num Vec -> Vec
+
+(define (vec-mult c u)
+  (foldr (lambda (x1 xn) (cons (* x1 c) xn)) '() u))
