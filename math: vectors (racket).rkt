@@ -61,8 +61,10 @@
 ;; proj: Vec Vec -> Vec
 
 (define (proj u x)
-  (foldr
-   (lambda (x1 xn)
-     (cons (* x1 (/ (foldr (lambda (f1 fn) (+ f1 fn)) 0 (map * x u))
-                    (foldr (lambda (x1 xn) (+ (sqr x1) xn)) 0 u))) xn))
-   '() u))
+  (local [(define (vec-mult c u)
+            (foldr (lambda (x1 xn) (cons (* x1 c) xn)) '() u))
+          (define (vec-dot u v)
+            (foldr (lambda (f1 fn) (+ f1 fn)) 0 (map * u v)))
+          (define (vec-sqr u)
+            (foldr (lambda (x1 xn) (+ (sqr x1) xn)) 0 u))]
+    (vec-mult (/ (vec-dot x u) (vec-sqr u)) u)))
