@@ -66,5 +66,5 @@
           (define (vec-dot u v)
             (foldr + 0 (map * u v)))
           (define (vec-sqr u)
-            (foldr (lambda (x1 xn) (+ (sqr x1) xn)) 0 u))]
+            (vec-dot u u))]
     (vec-mult (/ (vec-dot x u) (vec-sqr u)) u)))
