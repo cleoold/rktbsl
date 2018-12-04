@@ -4,12 +4,16 @@
 
 ;; regular version
 
-(define (fibonacci i)
+;; F(0) = 0
+;; F(1) = 1
+;; F(n) = F(n-2) + F(n-1)
+
+(define (fibonacci n)
   (cond
-    [(= i 0) 0]
-    [(= i 1) 1]
+    [(= n 0) 0]
+    [(= n 1) 1]
     [else
-     (+ (fibonacci (- i 1)) (fibonacci (- i 2)))]))
+     (+ (fibonacci (- n 1)) (fibonacci (- n 2)))]))
      
  ;; tail recursion v1
  
@@ -29,15 +33,33 @@
              [else (fib-adder b (+ a b) (add1 counter))]))]
     (fib-adder -1 1 0)))
     
- ;; tail recursion v3
+ ;; recursion v3
   
- (define (fibonacci4 i)
+ (define (fibonacci4 n)
   (cond
-    [(= i 0) 0]
-    [(= i 1) 1]
+    [(= n 0) 0]
+    [(= n 1) 1]
     [else
      (local
        [(define (fib-adder a b counter)
-       (cond [(= i counter) (+ a b)]
+       (cond [(= n counter) (+ a b)]
              [else (fib-adder b (+ a b) (add1 counter))]))]
        (fib-adder 0 1 2))]))
+       
+;; ..................................................................
+
+;; with offsets and weights
+;; F(0) = A
+;; F(1) = B
+;; F(n) = xF(n-2) + yF(n-1)
+
+(define (newfib i A B x y)
+  (cond
+    [(= i 0) A]
+    [(= i 1) B]
+    [else
+     (local
+       [(define (fibh a b counter)
+       (cond [(= i counter) (+ (* 2 x) (* 3 y))]
+             [else (fibh b (+ (* 2 x) (* 3 y)) (add1 counter))]))]
+       (fibh A B 2))]))
