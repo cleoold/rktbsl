@@ -53,13 +53,13 @@
 ;; F(1) = B
 ;; F(n) = xF(n-2) + yF(n-1)
 
-(define (newfib i A B x y)
+(define (weighted-fibonacci i A B x y)
   (cond
     [(= i 0) A]
     [(= i 1) B]
     [else
      (local
-       [(define (fibh a b counter)
-       (cond [(= i counter) (+ (* 2 x) (* 3 y))]
-             [else (fibh b (+ (* 2 x) (* 3 y)) (add1 counter))]))]
-       (fibh A B 2))]))
+       [(define (fib-adder a b counter)
+       (cond [(= i counter) (+ (* x a) (* y b))]
+             [else (fib-adder b (+ (* x a) (* y b)) (add1 counter))]))]
+       (fib-adder A B 2))]))
