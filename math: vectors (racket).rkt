@@ -2,7 +2,7 @@
 ;; calculates some basic operations associated with vectors
 ;; requires two vectors are same length, which means both in R^n
 
-;(provide vec-add vec-mult vec-dot)
+(provide vec-add vec-mult vec-dot)
 
 ;; defining a vector
 ;; a Vec is either
