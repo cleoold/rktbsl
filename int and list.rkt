@@ -37,13 +37,29 @@
 ;(intlist->integer '(- 1 2 3 4)) -> -1234
 
 
-;; converts a list of hex integers to an list of chars
+;; converts a list of chars to a list of hex integers
+;; charlist->hexlist: (listof Char) -> (listof (anyof Int Sym))
+
+(define (charlist->hexlist my-lst)
+  (foldr (lambda (i1 rr)
+           (cond [(char-alphabetic? i1)
+                  (cons (string->symbol (make-string 1 i1)) rr)]
+                 [(equal? i1 #\-) (cons '- rr)]
+                 [else (cons (- (char->integer i1) (char->integer #\0)) rr)]))
+         null my-lst))
+         
+;; example
+;(charlist->hexlist '(#\- #\1 #\2 #\3 #\A #\F)) -> '(- 1 2 3 A F)
+
+
+;; converts a list of hex integers to a list of chars
 ;; hexintlist->charlist: (listof (anyof Int Sym)) -> (listof Char)
 
 (define (hexintlist->charlist my-lst)
   (foldr (lambda (i1 rr)
-           (cond [(integer? i1) (cons (integer->char (+ 48 i1)) rr)]
-                 [else (cons ((compose car string->list symbol->string) i1) rr)]))
+           (if (integer? i1)
+               (cons (integer->char (+ 48 i1)) rr)
+               (cons ((compose car string->list symbol->string) i1) rr)))
          null my-lst))
       
 ;; example
