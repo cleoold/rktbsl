@@ -54,7 +54,7 @@
 ;; transpose
 ;; transpose: Mtx -> Mtx
 
-(define (transpose m)
+(define (transpose2 m)
   (local
     [(define (get-ele row jth)
        (if (zero? jth)
@@ -71,7 +71,7 @@
     (trp/raw 0)))
     
 ;; [with alf]
-(define (transpose2 m)
+(define (transpose m)
   (apply map list m))
     
 ;; example
