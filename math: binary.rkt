@@ -62,6 +62,29 @@
 ;(bin->dec 10011010010) -> 1234
 
 
+;; converts a hexadecimal integer to a decimal integer
+;; hex->dec Str -> Nat
+
+(define (hex->dec an-int)
+  (local
+    [(define hexintlst (string->list an-int))
+     (define (intlst hexlst)
+       (foldr (lambda (hexl1 rr)
+                (cond [(char=? hexl1 #\A) (cons 10 rr)] [(char=? hexl1 #\B) (cons 11 rr)]
+                      [(char=? hexl1 #\C) (cons 12 rr)] [(char=? hexl1 #\D) (cons 13 rr)]
+                      [(char=? hexl1 #\E) (cons 14 rr)] [(char=? hexl1 #\F) (cons 15 rr)]
+                      [else (cons (- (char->integer hexl1) (char->integer #\0)) rr)]))
+              null hexintlst))]
+    (foldr (lambda (numl1 degl1 rr)
+             (+ (* numl1 (expt 16 degl1)) rr))
+           0
+           (intlst an-int)
+           (reverse (build-list (length hexintlst) identity)))))
+           
+;; example
+;(hex->dec "1597FA") -> 1415162
+
+
 ;; converts a decimal integer to a hexadecimal integer
 ;; dec->hex: Nat -> Str
 
