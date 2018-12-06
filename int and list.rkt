@@ -17,7 +17,7 @@
 
 (define (integer->intlist my-int)
   (if (>= my-int 0)
-      (map (lambda (x) (- (char->integer x) (char->integer #\0)))
+      (map (lambda (x) (- (char->integer x) 48)) ; (char->integer #\0) -> 48
            ((compose string->list number->string) my-int))
       (cons '- (integer->intlist (- my-int)))))
 
@@ -29,11 +29,18 @@
 ;; converts a list of integers to an integer 
 ;; integer->intlist: LoI -> Int
 
+;; [extracting by char]
 (define (intlist->integer my-lst)
   (if (integer? (car my-lst))
       ((compose string->number list->string)
        (map (lambda (x) (integer->char (+ 48 x))) my-lst))
       (- (intlist->integer (cdr my-lst)))))
+      
+;; [extracting by decimal expansion]
+(define (intlist->integer2 my-lst)
+  (if (integer? (car my-lst))
+      (foldl (lambda (x acc) (+ x (* acc 10))) 0 my-lst)
+      (- (intlist->integer2 (cdr my-lst)))))
       
 ;; examples
 ;(intlist->integer '(1 2 3 4)) -> 1234
