@@ -2,7 +2,10 @@
 
 ;; conversions between integers and (listof Int)s!
 
-(provide integer->intlist intlist->integer hexintlist->charlist)
+(provide integer->intlist 
+         intlist->integer 
+         charlist->hexintlist 
+         hexintlist->charlist)
 
 ;; definitions
 ;; an integer (Int) is an Int
