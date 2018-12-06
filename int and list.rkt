@@ -38,9 +38,9 @@
 
 
 ;; converts a list of chars to a list of hex integers
-;; charlist->hexlist: (listof Char) -> (listof (anyof Int Sym))
+;; charlist->hexintlist: (listof Char) -> (listof (anyof Int Sym))
 
-(define (charlist->hexlist my-lst)
+(define (charlist->hexintlist my-lst)
   (foldr (lambda (i1 rr)
            (cond [(char-alphabetic? i1)
                   (cons (string->symbol (make-string 1 i1)) rr)]
@@ -49,7 +49,7 @@
          null my-lst))
          
 ;; example
-;(charlist->hexlist '(#\- #\1 #\2 #\3 #\A #\F)) -> '(- 1 2 3 A F)
+;(charlist->hexintlist '(#\- #\1 #\2 #\3 #\A #\F)) -> '(- 1 2 3 A F)
 
 
 ;; converts a list of hex integers to a list of chars
