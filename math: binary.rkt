@@ -12,16 +12,12 @@
 (define (basen->dec2 nbase nnumber)
   (local
     [(define numlst (integer->intlist (abs nnumber)))
-     (define degree (length numlst))
-     (define (if-positive degreel numlst)
-       (foldr (lambda (numl1 degl1 rr)
-                (+ (* numl1 (expt nbase degl1)) rr))
-              0
-              numlst
-              (reverse (build-list degree identity))))]
-    (if (>= nnumber 0)
-        (if-positive degree numlst)
-        (- (if-positive degree numlst)))))
+     (define degree (length numlst))]
+    (foldr (lambda (numl1 degl1 rr)
+             (+ (* numl1 (expt nbase degl1)) rr))
+           0
+           numlst
+           (reverse (build-list degree identity)))))
            
 ;; [faster expansion]
 (define (basen->dec nbase nnumber)
@@ -32,7 +28,7 @@
          
          
 ;; converts a decimal integer to a base-n integer
-;; basen->dec: Nat Int -> Int
+;; basen->dec: Nat Nat -> (listof Nat)
 
 (define (dec->basen nbase nnumber)
   (local
@@ -44,3 +40,23 @@
     (reverse (dec-basen/reversed nnumber))))
     
 ;; ======================================================================
+
+;; converts a binary integer to a decimal integer
+;; bin->dec: Nat -> Nat
+
+(define (bin->dec an-int)
+  (((curry basen->dec) 2) an-int))
+  
+;; example
+;(dec->bin 1234) -> 10011010010
+
+
+;; converts a decimal integer to a binary integer
+;; dec->bin: Nat -> Nat
+
+(define (dec->bin an-int)
+  (intlist->integer 
+    (((curry dec->basen) 2) an-int)))
+    
+;; example
+;(bin->dec 10011010010) -> 1234
