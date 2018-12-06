@@ -60,3 +60,19 @@
     
 ;; example
 ;(bin->dec 10011010010) -> 1234
+
+
+;; converts a decimal integer to a hexadecimal integer
+;; dec->hex: Nat -> Str
+
+(define (dec->hex an-int)
+  ((compose list->string hexintlist->charlist)
+   (foldr (lambda (i1 rr)
+            (cond [(= i1 10) (cons 'A rr)] [(= i1 11) (cons 'B rr)]
+                  [(= i1 12) (cons 'C rr)] [(= i1 13) (cons 'D rr)]
+                  [(= i1 14) (cons 'E rr)] [(= i1 15) (cons 'F rr)]
+                  [else (cons i1 rr)]))
+          null (dec->basen 16 an-int))))
+          
+;; example
+;(dec->hex 1415162) -> "1597FA"
