@@ -41,12 +41,10 @@
 ;; hexintlist->charlist: (listof (anyof Int Sym)) -> (listof Char)
 
 (define (hexintlist->charlist my-lst)
-  (if (not (equal? (car my-lst) '-))
-      (foldr (lambda (i1 rr)
-               (cond [(integer? i1) (cons (integer->char (+ 48 i1)) rr)]
-                     [else (cons ((compose car string->list symbol->string) i1) rr)]))
-             null my-lst)
-      (cons #\- (hexintlist->charlist (cdr my-lst)))))
+  (foldr (lambda (i1 rr)
+           (cond [(integer? i1) (cons (integer->char (+ 48 i1)) rr)]
+                 [else (cons ((compose car string->list symbol->string) i1) rr)]))
+         null my-lst))
       
 ;; example
 ;(hexintlist->charlist '(- 1 2 3 A F)) -> '(#\- #\1 #\2 #\3 #\A #\F)
