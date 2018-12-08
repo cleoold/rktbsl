@@ -25,6 +25,7 @@
 ;(integer->intlist 1234) -> '(1 2 3 4)
 ;(integer->intlist -1234) -> '(- 1 2 3 4)
 
+;; =========================================================================
 
 ;; converts a list of integers to an integer 
 ;; integer->intlist: LoI -> Int
@@ -46,6 +47,7 @@
 ;(intlist->integer '(1 2 3 4)) -> 1234
 ;(intlist->integer '(- 1 2 3 4)) -> -1234
 
+;; =========================================================================
 
 ;; converts a list of chars to a list of hex integers
 ;; charlist->hexintlist: (listof Char) -> (listof (anyof Int Sym))
@@ -61,6 +63,7 @@
 ;; example
 ;(charlist->hexintlist '(#\- #\1 #\2 #\3 #\A #\F)) -> '(- 1 2 3 A F)
 
+;; =========================================================================
 
 ;; converts a list of hex integers to a list of chars
 ;; hexintlist->charlist: (listof (anyof Int Sym)) -> (listof Char)
