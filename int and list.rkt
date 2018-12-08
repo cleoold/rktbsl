@@ -12,6 +12,8 @@
 ;; a positive list of integers is (listof Nat)
 ;; a negative list of integers is (cons '- (listof Nat))
 
+;; =========================================================================
+
 ;; converts an integer to a list of integers
 ;; integer->intlist: Int -> LoI
 
