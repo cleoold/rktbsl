@@ -2,7 +2,7 @@
 
 ;; something about base-n conversion and applications in binary conversion
 
-(require "int and list.rkt")
+(require "algos/int and list.rkt")
 
 ;; converts a base-n integer to a decimal "integer" (there are probably fraction base)
 ;; basen->dec: Num Int -> Num
