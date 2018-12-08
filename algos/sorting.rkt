@@ -38,12 +38,13 @@
                       
 ;; [quick sort]    
 (define (quick-sort lon pred?)
-  (cond [(null? lon) null]
-        [else
-         (local
-           [(define pivot (car lon))
-            (define left
-              (filter (lambda (x) (pred? x pivot)) (cdr lon)))
-            (define right
-              (filter (lambda (x) ((compose not pred?) x pivot)) (cdr lon)))]
-           (append (quick-sort left pred?) (list pivot) (quick-sort right pred?)))]))
+  (cond
+    [(null? lon) null]
+    [else
+     (local
+       [(define pivot (car lon))
+        (define left
+          (filter (lambda (x) (pred? x pivot)) (cdr lon)))
+        (define right
+          (filter (lambda (x) ((compose not pred?) x pivot)) (cdr lon)))]
+       (append (quick-sort left pred?) (list pivot) (quick-sort right pred?)))]))
