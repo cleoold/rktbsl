@@ -48,6 +48,8 @@
 ;; directional derivative of a surface defined in R^n with equation f along a specific directional vector l[cosα, cosβ, ..., cosN]
 ;; f is the function, vars is the list of variable names, x0 is the point of interest, 
 ;; direction is the list of degrees for each direction (in radians), step is ... the step
+;; directional-derivative: (Num ... Num -> Num) (listof Sym) (listof Num) (listof Num) Num -> Num
+;; requires: vars and x0 have same lengths
 
 (define (directional-derivative f vars x0 direction step)
   (foldr (lambda (vars_1 di_1 vd_n)
@@ -64,6 +66,8 @@
 ;; (also the modulo of maximum directional derivative)
 ;; f is the function, vars is the list of variable names, x0 is the point of interest, 
 ;; step is ... the step
+;; gradient: (Num ... Num -> Num) (listof Sym) (listof Num) Num -> (listof Num)
+;; requires: vars and x0 have same lengths
 
 (define (gradient f vars x0 step)
   (foldr (lambda (vars_1 vars_n)
