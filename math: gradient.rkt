@@ -45,7 +45,23 @@
 ;(p-derivative (λ (x y z) (+ x (* 2 y) (cos z))) '(x y z) '(411 7 -1) 'y 0.00001) -> 2.0000000006348273
 
 
-;; gradient (vector) of a function that maps a subset of R to a subset of R
+;; directional derivative of a surface defined in R^n with equation f along a specific directional vector l[cosα, cosβ, ..., cosN]
+;; f is the function, vars is the list of variable names, x0 is the point of interest, 
+;; direction is the list of degrees for each direction (in radians), step is ... the step
+
+(define (directional-derivative f vars x0 direction step)
+  (foldr (lambda (vars_1 di_1 vd_n)
+           (+ (* (p-derivative f vars x0 vars_1 step) (cos di_1)) vd_n))
+         0 vars direction))
+         
+;; example
+;∂/∂l [f(x,y,z)=xy+yz+zx] @(x,y,z)=(1,1,2), where l has angles [60°, 45°, 60°]
+;(directional-derivative (λ (x y z) (+ (* x y) (* y z) (* z x))) '(x y z) '(1 1 2)
+;                        `(,(degrees->radians 60) ,(degrees->radians 45) ,(degrees->radians 60)) 0.0001) -> 4.621320343559594
+
+
+;; gradient (as a vector) of a surface defined in R^n with equation f
+;; (also the modulo of maximum directional derivative)
 ;; f is the function, vars is the list of variable names, x0 is the point of interest, 
 ;; step is ... the step
 
@@ -55,5 +71,6 @@
          null vars))
          
 ;; example
+;∇ [f(x,y,z)=x+2y+cosz] @(x,y,z)=(411,7,-1)
 ;(gradient (λ (x y z) (+ x (* 2 y) (cos z))) '(x y z) '(411 7 -1) 0.00001) ->
 ; '(0.9999999974752426 2.0000000006348273 0.8414682838520092)
