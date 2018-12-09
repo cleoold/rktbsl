@@ -2,6 +2,9 @@
 
 ;; approximation of rate of change of functions
 
+;; definition
+;; a point or vector is a list of numbers
+
 
 ;; rate of change of a single-variable function
 ;; f is the function, x0 is the point of interest, step is ... the step
@@ -40,3 +43,17 @@
 ;; example
 ;∂/∂y [f(x,y,z)=x+2y+cosz] @(x,y,z)=(411,7,-1)
 ;(p-derivative (λ (x y z) (+ x (* 2 y) (cos z))) '(x y z) '(411 7 -1) 'y 0.00001) -> 2.0000000006348273
+
+
+;; gradient (vector) of a function that maps a subset of R to a subset of R
+;; f is the function, vars is the list of variable names, x0 is the point of interest, 
+;; step is ... the step
+
+(define (gradient f vars x0 step)
+  (foldr (lambda (vars_1 vars_n)
+           (cons (p-derivative f vars x0 vars_1 step) vars_n))
+         null vars))
+         
+;; example
+;(gradient (λ (x y z) (+ x (* 2 y) (cos z))) '(x y z) '(411 7 -1) 0.00001) ->
+; '(0.9999999974752426 2.0000000006348273 0.8414682838520092)
