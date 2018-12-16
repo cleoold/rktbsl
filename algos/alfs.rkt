@@ -1,5 +1,5 @@
 #lang racket
-;; inplements some useful list-modification functions
+;; implements some useful list-modification functions
 
 
 ;; snaps a slice of a list from index-from, to just before index-to
