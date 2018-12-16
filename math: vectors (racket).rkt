@@ -14,7 +14,8 @@
 ;; vec-sqr: Vec -> Num
 
 (define (vec-sqr u)
-  (foldr (lambda (x1 xn) (+ (sqr x1) xn)) 0 u))
+; alt:  (foldr (lambda (x1 xn) (+ (sqr x1) xn)) 0 u))
+  (apply + (map sqr u)))
   
 ;; ..........................................................
 ;; modulo of a vector
@@ -22,7 +23,7 @@
 
 (define (vec-mag u)
   (sqrt
-   (foldr (lambda (x1 xn) (+ (sqr x1) xn)) 0 u)))
+   (apply + (map sqr u))))
    
 ;; ..........................................................
 ;; vector addition
@@ -36,7 +37,7 @@
 ;; vec-mult: Num Vec -> Vec
 
 (define (vec-mult c u)
-  (foldr (lambda (x1 xn) (cons (* x1 c) xn)) '() u))
+  (map (lambda (u1) (* c u1)) u))
   
 ;; ..........................................................
 ;; inner product
