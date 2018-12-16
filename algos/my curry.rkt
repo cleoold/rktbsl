@@ -17,7 +17,7 @@
   (lambda (x) (f (g x))))
  
 ;; filter-yes:
-(define (eat-apples lst)
+(define (keep-apples lst)
   (filter ((my-curry symbol=?) 'apple) lst))
 
 ;; filter-not:
