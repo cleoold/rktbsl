@@ -65,7 +65,7 @@
 
 (define (proj u x)
   (local [(define (vec-mult c u)
-            (foldr (lambda (x1 xn) (cons (* x1 c) xn)) '() u))
+            (map (lambda (u1) (* c u1)) u))
           (define (vec-dot u v)
             (foldr + 0 (map * u v)))
           (define (vec-sqr u)
