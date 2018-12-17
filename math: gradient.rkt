@@ -1,5 +1,7 @@
 #lang racket
 
+(provide right-derivative)
+
 ;; approximation of rate of change of functions
 
 ;; definition
