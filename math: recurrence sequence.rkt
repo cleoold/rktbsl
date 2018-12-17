@@ -52,6 +52,8 @@
 ;; newton-solve: (Num -> Num) Num Num -> (Nat -> Num)
 ;; requires: step is greater than 0
 
+(require "math: gradient.rkt")
+
 (define (newton-solve f guess step)
   (recursive-sequence1 guess
     (lambda (x) (- x (/ (f x) (right-derivative f x step))))))
