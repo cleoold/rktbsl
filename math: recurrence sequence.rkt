@@ -45,3 +45,17 @@
 ;; example
 ;{ a(0)=1, a(1)=1 a(n)=(n-2)+(n-1)^2 } first 7 terms
 ;(build-list 7 (recursive-sequence2 1 1 (λ (x y) (+ x (sqr y))))) -> '(1 1 2 5 27 734 538783)
+
+;; ................................................................................
+;; solve equations f=0 with Newton's method
+;; f is the function that equals 0, guess is the initial guess, step is the step used in computing derivatives
+;; newton-solve: (Num -> Num) Num Num -> (Nat -> Num)
+;; requires: step is greater than 0
+
+(define (newton-solve f guess step)
+  (recursive-sequence1 guess
+    (lambda (x) (- x (/ (f x) (right-derivative f x step))))))
+
+;; example
+;solve cos(x)-x=0
+;((newton-solve (λ (x) (- (cos x) x)) -4 0.000001) 10) -> 0.7390851332151607
