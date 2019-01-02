@@ -19,7 +19,7 @@
          (adder A 1))])))
          
 ;; example
-;{ a(0)=1, a(n)=2*(n-1) }  first 10 terms
+;{ a(0)=1, a(n)=2*a(n-1) }  first 10 terms
 ;(build-list 10 (recursive-sequence1 1 (λ (x) (* 2 x)))) -> '(1 2 4 8 16 32 64 128 256 512)
 
 
@@ -43,7 +43,7 @@
          (adder A B 2))])))
          
 ;; example
-;{ a(0)=1, a(1)=1 a(n)=(n-2)+(n-1)^2 } first 7 terms
+;{ a(0)=1, a(1)=1 a(n)=a(n-2)+a(n-1)^2 } first 7 terms
 ;(build-list 7 (recursive-sequence2 1 1 (λ (x y) (+ x (sqr y))))) -> '(1 1 2 5 27 734 538783)
 
 ;; ................................................................................
