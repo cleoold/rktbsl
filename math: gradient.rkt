@@ -35,9 +35,9 @@
 
 (define (p-derivative f vars x0 my-var step)
   (/ (- (apply f (foldr
-                  (lambda (x0_1 x_1 x0_n)
-                    (cond [(symbol=? x_1 my-var) (cons (+ x0_1 step) x0_n)]
-                          [else (cons x0_1 x0_n)]))
+                  (lambda (x0_1 x_1 rr)
+                    (cond [(symbol=? x_1 my-var) (cons (+ x0_1 step) rr)]
+                          [else (cons x0_1 rr)]))
                   null x0 vars))
         (apply f x0))
      step))
@@ -54,8 +54,8 @@
 ;; requires: vars and x0 have same lengths
 
 (define (directional-derivative f vars x0 direction step)
-  (foldr (lambda (vars_1 di_1 vd_n)
-           (+ (* (p-derivative f vars x0 vars_1 step) (cos di_1)) vd_n))
+  (foldr (lambda (vars_1 di_1 rr)
+           (+ (* (p-derivative f vars x0 vars_1 step) (cos di_1)) rr))
          0 vars direction))
          
 ;; example
@@ -72,8 +72,8 @@
 ;; requires: vars and x0 have same lengths
 
 (define (gradient f vars x0 step)
-  (foldr (lambda (vars_1 vars_n)
-           (cons (p-derivative f vars x0 vars_1 step) vars_n))
+  (foldr (lambda (vars_1 rr)
+           (cons (p-derivative f vars x0 vars_1 step) rr))
          null vars))
          
 ;; example
