@@ -56,4 +56,4 @@
 ;(area-fx-rectangular (λ (x) (/ (sqr (sin x)) (expt x 3))) 0 10 0.01) -> 6.795608737685372
 ;(area-fx-rectangular (λ (x) (/ (sqr (sin x)) (expt x 3))) 0 10 0.00001) -> 13.703365408992292
 ; but...
-;(area-fx-rectangular-left (λ (x) (/ (sqr (sin x)) (expt x 3))) 0 10 0.01) ->/: division by zero
+;(area-fx-rectangular-left (λ (x) (/ (sqr (sin x)) (expt x 3))) 0 10 0.01) -> /: division by zero
