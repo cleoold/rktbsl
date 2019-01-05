@@ -7,7 +7,7 @@
 ;; computes the Riemann sum with "infinitesimal" bars for a one-variable function y=f(x) from x=a to x=b. must note that
 ;; the subintervals used here do not have equal lengths. given a step (like 0.0001 units), this calculates 
 ;; the area of the bar from x=a to x=a+0.0001, then plus the area from x=a+0.0001 to x=a+0.0002, and so on. at the end, 
-;; the second bound x=a+c*0.0001 can exceed the required x=b. for this, an area from x=a+(c-1)*0.0001 to x=b is computed
+;; the second bound x=a+c*0.0001 can exceed the required x=b for some integer c. for this, an area from x=a+(c-1)*0.0001 to x=b is computed
 ;; to terminate the program.
 
 ;; helper functions
