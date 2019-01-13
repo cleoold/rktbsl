@@ -1,7 +1,7 @@
 #lang racket
 ;; more analyses towards vectors in linear algebra; the extension of rktbsl/math: vectors (racket)
 
-(require "math-vectors-(racket).rkt")
+(require "math-vectors-racket.rkt")
 
 ;; ..........................................................
 ;; checks whether a vector is a zero vector
