@@ -52,7 +52,7 @@
 ;; newton-solve: (Num -> Num) Num Num -> (Nat -> Num)
 ;; requires: step is greater than 0
 
-(require "math: gradient.rkt")
+(require "math-gradient.rkt")
 
 (define (newton-solve f guess step)
   (recursive-sequence1 guess
