@@ -2,7 +2,6 @@
 
 ;; something about base-n conversion and applications in binary conversion
 
-(require "algos/int and list.rkt")
 
 ;; converts a base-n integer to a decimal "integer" (there are probably fraction base)
 ;; basen->dec: Num Int -> Num
@@ -61,6 +60,8 @@
 ;; example
 ;(bin->dec 10011010010) -> 1234
 
+
+(require "algos/int-and-list.rkt")
 
 ;; converts a hexadecimal integer to a decimal integer
 ;; hex->dec Str -> Nat
