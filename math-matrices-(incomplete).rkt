@@ -3,7 +3,7 @@
 ;; a matrix is really a series of rows/columns of vectors so
 ;; refer to "rktbsl/math: vectors.rkt" for required functions
 
-(require "math: vectors (racket).rkt")
+(require "math-vectors-(racket).rkt")
 
 ;; defining a matrix
 ;; a matrix (Mtx) is a list
