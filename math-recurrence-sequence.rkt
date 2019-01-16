@@ -1,4 +1,7 @@
 #lang racket
+
+(provide newton-solve)
+
 ;; computations for recurrence sequences ready for use
 
 ;; with one offset and one term for recursion eg:
