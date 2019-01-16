@@ -33,7 +33,7 @@
    "enter 1: adjust the initial guess, useful for finding other roots." "\n"
    "enter 2: adjust the precision." "\n"
    "enter 3: adjust the number of recursive calls." "\n"
-   "enter q: return to main page." "\n" "\n"))
+   "enter q: determine another equation." "\n" "\n"))
 
 (define inc-func
   "make sure you typed in the correct format.\n \n")
@@ -54,7 +54,8 @@
   (display ask-recur)
   (define step-recursive (read))
   (if (and (procedure? f) (number? guess)
-           (number? step-differential) (number? step-recursive))
+           (number? step-differential) (number? step-recursive)
+           (> step-recursive 0))
       (display ((newton-solve f guess step-differential) step-recursive))
       ((display inc-func) (newton-solve-application)))
   (local
