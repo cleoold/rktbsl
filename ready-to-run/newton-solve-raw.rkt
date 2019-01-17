@@ -58,31 +58,33 @@
            (> step-recursive 0))
       (display ((newton-solve f guess step-differential) step-recursive))
       ((display inc-func) (newton-solve-application)))
-  (local
-    [(define (break-pt)
-       (display ask-msg)
+ (local
+    ((define (break-pt local-guess local-prec local-step)
+       (display newtonsolve-ask-msg)
        (define order (read))
        (cond
-         [(eq? order '1)
-          (display ask-guess)
+         ((eq? order '1)
+          (display newtonsolve-ask-guess)
           (define new-guess (read))
-          (display ((newton-solve f new-guess step-differential) step-recursive))
-          (break-pt)]
-         [(eq? order '2)
-          (display ask-prec)
+          (display ((newton-solve f new-guess local-prec) local-step))
+          (break-pt new-guess local-prec local-step))
+         ((eq? order '2)
+          (display newtonsolve-ask-prec)
           (define new-step-differential (read))
-          (display ((newton-solve f guess new-step-differential) step-recursive))
-          (break-pt)]
-         [(eq? order '3)
-          (display ask-recur)
+          (display ((newton-solve f local-guess new-step-differential) local-step))
+          (break-pt local-guess new-step-differential local-step))
+         ((eq? order '3)
+          (display newtonsolve-ask-recur)
           (define new-step-recursive (read))
-          (display ((newton-solve f guess step-differential) new-step-recursive))
-          (break-pt)]
-         [(eq? order 'q)
-          (newton-solve-application)]
-         [else
-          (display inc-order)
-          (break-pt)]))]
-    (break-pt)))
+          (display ((newton-solve f local-guess local-prec) new-step-recursive))
+          (break-pt local-guess local-prec new-step-recursive))
+         ((eq? order '4)
+          (newton-solve-application))
+         ((eq? order 'q)
+          (caltool-main))
+         (else
+          (display caltool-inc-order)
+          (break-pt local-guess local-prec local-step)))))
+    (break-pt guess step-differential step-recursive)))
 
 (newton-solve-application)
