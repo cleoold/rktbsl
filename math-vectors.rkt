@@ -130,7 +130,7 @@
 
 ;; example
 ; (r2 (list 1 0) (/ pi 2)) yields
-; (list -1.0 6.123031769111886e-017)
+; (list 6.123031769111886e-017 1.0)
 
 ;; ..........................................................
 ;; rotate 3d vector v counterclockwise with angle a with respect with x, y, or z axis
