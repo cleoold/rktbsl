@@ -40,6 +40,13 @@
   (map (lambda (u1) (* c u1)) u))
   
 ;; ..........................................................
+;; distance
+;; vec-dst: Vec Vec -> Num
+
+(define (vec-dst u v)
+   (apply (compose sqrt +) (map (compose sqr -) u v)))
+  
+;; ..........................................................
 ;; inner product
 ;; vec-dot: Vec Vec -> Num
 
@@ -64,10 +71,4 @@
 ;; proj: Vec Vec -> Vec
 
 (define (proj u x)
-  (local [(define (vec-mult c u)
-            (map (lambda (u1) (* c u1)) u))
-          (define (vec-dot u v)
-            (foldr + 0 (map * u v)))
-          (define (vec-sqr u)
-            (vec-dot u u))]
-    (vec-mult (/ (vec-dot x u) (vec-sqr u)) u)))
+    (vec-mult (/ (vec-dot x u) (vec-sqr u)) u))
