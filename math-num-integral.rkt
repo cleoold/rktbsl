@@ -8,7 +8,7 @@
 ;; the subintervals used here do not have equal lengths. given a step (like 0.0001 units), this calculates 
 ;; the area of the bar from x=a to x=a+0.0001, then plus the area from x=a+0.0001 to x=a+0.0002, and so on. at the end, 
 ;; the second bound x=a+c*0.0001 can exceed the required x=b for some integer c. for this, an area from x=a+(c-1)*0.0001 to x=b is computed
-;; to terminate the program.
+;; to terminate the program. this can be avoided by increasing the number of partitions (decreasing step).
 
 ;; helper functions
 ;; area-sq: Num Num Num -> Num
