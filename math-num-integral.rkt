@@ -7,7 +7,7 @@
 ;; computes the Riemann sum with "infinitesimal" bars for a one-variable function y=f(x) from x=a to x=b. must note that
 ;; the subintervals used here do not have equal lengths. given a step (like 0.0001 units), this calculates 
 ;; the area of the bar from x=a to x=a+0.0001, then plus the area from x=a+0.0001 to x=a+0.0002, and so on. at the end, 
-;; the second bound x=a+c*0.0001 can exceed the required x=b for some integer c. for this, an area from x=a+(c-1)*0.0001 to x=b is computed
+;; the second bound x=a+c*0.0001 might exceed the required x=b for some integer c. for this, an area from x=a+(c-1)*0.0001 to x=b is computed
 ;; to terminate the program. this can be avoided by increasing the number of partitions (decreasing step).
 
 ;; helper functions
@@ -57,3 +57,28 @@
 ;(area-fx-rectangular (λ (x) (/ (sqr (sin x)) (expt x 3))) 0 10 0.00001) -> 13.703365408992292
 ; but...
 ;(area-fx-rectangular-left (λ (x) (/ (sqr (sin x)) (expt x 3))) 0 10 0.01) -> /: division by zero
+
+;; --------------------------------------------------------------------
+
+;; computes the length of a curve defined by y=f(x) from x=a to x=b in a similar manner as above.
+
+;; rec-distance: (Num -> Num) Num Num -> Num
+;; curve-length/acc:(Num -> Num) Num Num Num Num -> Num
+;; curve-length: (Num -> Num) Num Num Num -> Num
+
+(define (rec-distance f x1 x2)
+  (sqrt (+ (sqr (- x2 x1)) (sqr (- (f x2) (f x1))))))
+
+(define (curve-length/acc f b step x-1 x-2)
+  (cond
+    [(>= x-2 b) (rec-distance f x-1 b)]
+    [else (+ (rec-distance f x-1 (+ x-2 step))
+             (curve-length/acc f b step (+ x-1 step) (+ x-2 step)))]))
+
+(define (curve-length f a b step)
+  (curve-length/acc f b step a a))
+  
+;; example
+;evaluate the length of the curve formed by y=f(x)=√(1-x^2) from x=-1 to x=1. produces complex error terms.
+;(real-part (curve-length (λ (x) (sqrt (- 1 (sqr x)))) -1 1 0.0001) ) -> 3.1415923596240027
+
