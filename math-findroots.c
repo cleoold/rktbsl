@@ -1,4 +1,4 @@
-#include "stdio.h"
+#include <stdio.h>
 
 const double precision = 0.00001;
 
