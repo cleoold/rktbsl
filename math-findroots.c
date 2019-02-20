@@ -1,3 +1,6 @@
+// finds the n-th root of a real (double) number, ie solving the equation y=f(x)=x^n-a=0 for x.
+// with neccessary functions not pre-defined.
+
 #include <stdio.h>
 
 const double precision = 0.00001;
