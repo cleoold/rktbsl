@@ -115,8 +115,8 @@ double newton_sol(double (*f)(double), const double x0) {
 /* example
  solve cos(x)-x=0
 
-     double function1(double x) { return cos(x)-x; }
+     double f(double x) { return cos(x)-x; }
      ...
-     newton_solve(function1, -4, 0.000001, 10) >> 0.73985
+     newton_solve(f, -4, 0.000001, 10) >> 0.73985
 */
 
