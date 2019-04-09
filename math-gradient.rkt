@@ -117,6 +117,7 @@
 ;; my-var is the variable with respect to, step is ... the step
 ;; lr-second-p-derivative: (Num ... Num -> Num) (listof Sym) (listof Num) Sym Num -> Num
 ;; requires: vars and x0 have same lengths
+
 (define (lr-second-p-derivative f vars x0 my-var step)
   (define l (/ (- (apply f x0)
                   (apply f (modify-variable vars x0 my-var (lambda (x) (- x step))))) step))
